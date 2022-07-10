@@ -1,2 +1,5 @@
-package Services;public class EntityService {
+package Services;
+
+public abstract class EntityService {
+    protected StorageService storageService = new StorageService();
 }
