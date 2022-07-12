@@ -37,10 +37,13 @@ public class Menu {
                 break;
             case "4":
                 System.out.println("BOOKING Theater");
+                break;
             case "5":
                 System.out.println("BOOKING Music");
+                break;
             case "6":
                 System.out.println("View statistics");
+                break;
             case "7":
                 saveAndExit();
             default:
