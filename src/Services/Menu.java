@@ -36,10 +36,10 @@ public class Menu {
                 subMenuClients();
                 break;
             case "4":
-                System.out.println("BOOKING Theater");
+                System.out.println("Booking Theater");
                 break;
             case "5":
-                System.out.println("BOOKING Music");
+                System.out.println("Booking Music");
                 break;
             case "6":
                 System.out.println("View statistics");
