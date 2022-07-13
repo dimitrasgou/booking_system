@@ -4,17 +4,25 @@ import Entities.Client;
 import Entities.MusicShow;
 import Entities.TheaterShow;
 
+
 import java.util.ArrayList;
 
+
+
 public class StorageService {
+
+
 
     public ArrayList<Client> getClients(){
         return new ArrayList<Client>();
     }
 
+
     public void saveClients(ArrayList<Client> clients){
         System.out.println(clients);
     }
+
+
 
     public ArrayList<MusicShow> getMusicShows(){
         return new ArrayList<MusicShow>();

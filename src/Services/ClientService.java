@@ -4,39 +4,68 @@ import Entities.Client;
 
 import java.util.ArrayList;
 
-public class ClientService extends EntityService
-{
+public class ClientService extends EntityService {
     private ArrayList<Client> clients;
 
-    ClientService(){
+    ClientService() {
         loadClients();
     }
 
-    private void loadClients()
-    {
+    private void loadClients() {
         clients = storageService.getClients();
     }
 
-    public void insert(String id, String firstName, String surName, String email, String phone)
-    {
+    public void insert(String id, String firstName, String surName, String email, String phone) {
         //validation
 
 
         //if passes
-        clients.add(new Client(id,firstName,surName, email, phone));
+        clients.add(new Client(id, firstName, surName, email, phone));
+    }
+    public Client SearchClientN(String code) {
+        for (Client Client : clients) {
+            if (Client.getID().toUpperCase().trim().equals(code.toUpperCase().trim())) {
+                System.out.println("Client found");
+                return Client;
+            }
+            else
+                System.out.println("Client not found");
+        }
+        return null;
     }
 
-    public void update(String code){
-
+    public void remove(Client client){
+        clients.remove(client);
     }
 
-    public void delete(String code)
+
+    public void update(Client client,String id, String firstName, String surName, String email, String phone)
     {
+        client.setID(id);
+        client.setFirstName(firstName);
+        client.setSurName(surName);
+        client.setEmail(email);
+        client.setPhone(phone);
 
     }
 
-    public void save()
-    {
+
+
+    public void save() {
         storageService.saveClients(clients);
+    }
+
+    public void showAllClients() {
+        System.out.println("====Clients List====");
+        int i=1;
+        for (Client Client : clients) {
+            System.out.println("  ==================== no" + i);
+            System.out.println("ID number...........: " + Client.getID());
+            System.out.println("Name................: " + Client.getFirstName());
+            System.out.println("Surname.............: " + Client.getSurName());
+            System.out.println("Email...............: " + Client.getEmail());
+            System.out.println("Phone Number........: " + Client.getPhone());
+
+        }
     }
 }

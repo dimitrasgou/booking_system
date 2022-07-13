@@ -336,3 +336,23 @@
 //
 //
 //}
+
+/*   clientService.insert("00001","IOANNIDOU","KONSTANTINA","nina@gmail.com","6987894567");
+           Client P2 = new Client("00002", "IOANNOU", "AIMILIA", "emi@gmail.com", "6979020202");
+           Client P3 = new Client("00003", "TSAGDI", "MARIA", "maria@gmail.com", "6979085204");
+           Client P4 = new Client("00004", "STERGIOU", "FOTEINI", "fotini@gmail.com", "6978787585");
+           Client P5 = new Client("00005", "GEORGIADOU", "VICTORIA", "vic@gmail.com", "6970213456");
+           clients.add.(P1);
+           ClientService.insert(P2);
+           ClientService.insert(P3);
+           ClientService.insert(P4);
+           ClientService.insert(P5);   clientService.insert("00001","IOANNIDOU","KONSTANTINA","nina@gmail.com","6987894567");
+           Client P2 = new Client("00002", "IOANNOU", "AIMILIA", "emi@gmail.com", "6979020202");
+           Client P3 = new Client("00003", "TSAGDI", "MARIA", "maria@gmail.com", "6979085204");
+           Client P4 = new Client("00004", "STERGIOU", "FOTEINI", "fotini@gmail.com", "6978787585");
+           Client P5 = new Client("00005", "GEORGIADOU", "VICTORIA", "vic@gmail.com", "6970213456");
+           clients.add.(P1);
+           ClientService.insert(P2);
+           ClientService.insert(P3);
+           ClientService.insert(P4);
+           ClientService.insert(P5);*/
