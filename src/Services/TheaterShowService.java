@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.Client;
 import Entities.TheaterShow;
 
 import java.util.ArrayList;
@@ -55,17 +56,21 @@ public class TheaterShowService extends EntityService {
         theaterShows.remove(show);
     }
 
+    public void bookTicketForShow(TheaterShow theaterShow, Client client){
+        theaterShow.bookTicket(client);
+    }
+
     public void AllTheaterShows() {
-        System.out.println("====Theater Show ist====");
+        System.out.println("====Theater Show list====");
         int i=1;
         for (Entities.TheaterShow show : theaterShows) {
-            System.out.println("  ==================== no" + i);
+            System.out.println("==================== no" + i);
             System.out.println("ID number..........: " + show.getCode());
             System.out.println("Title..............: " + show.getTitle());
             System.out.println("Venue..............: " + show.getTheater());
             System.out.println("Date...............: " + show.getDate());
             System.out.println("Main Character.....: " + show.getActorName());
-
+            System.out.println("Clients booked.....: " + show.getClientList());
             i++;
         }
     }

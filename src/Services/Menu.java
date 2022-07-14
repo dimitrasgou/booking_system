@@ -23,8 +23,8 @@ public class Menu {
         System.out.println("Insert-Edit-Delete Information of Theater Entities Show..................1");
         System.out.println("Insert-Edit-Delete Information of Music Entities Show....................2");
         System.out.println("Insert-Edit-Delete Information of Entities Client........................3");
-        System.out.println("Book a ticket for a Theater Entities.Show................................4");
-        System.out.println("Book a ticket for a Music.. Entities.Show................................5");
+        System.out.println("Book a ticket for a Theater Entities Show................................4");
+        System.out.println("Book a ticket for a Music.. Entities Show................................5");
         System.out.println("View Statistics..........................................................6");
         System.out.println("Exit the Menu............................................................7");
         System.out.println("\n\nEnter your choice:");
@@ -43,7 +43,23 @@ public class Menu {
                 subMenuClients();
                 break;
             case "4":
-                System.out.println("Booking Theater");
+                String theaterShowCode = CheckCode(getUserInput("Enter theater show id:"));
+                TheaterShow TShow = theaterShowService.SearchTheaterShow(theaterShowCode);
+                if (TShow == null) {
+                    System.out.println("Theater show was not found.");
+                    initBaseMenu();
+                    return;
+                }
+
+                String clientCode = CheckCode(getUserInput("Enter client id:"));
+                Client client = clientService.GetClientByCode(clientCode);
+                if (client == null) {
+                    System.out.println("Client was not found.");
+                    initBaseMenu();
+                    return;
+                }
+
+                theaterShowService.bookTicketForShow(TShow, client);
                 break;
             case "5":
                 System.out.println("Booking Music");
@@ -90,7 +106,7 @@ public class Menu {
                 String actor = getUserInput("Enter the actor:");
                 theaterShowService.insert(ThID, ThTitle, ThVenue, ThDate, actor);
 
-                subMenuClients();
+                subMenuTheater();
                 break;
             case "2":
                 String Code = CheckCode(getUserInput("Enter client id:"));
@@ -102,16 +118,16 @@ public class Menu {
                 String NewName = CheckPhone(getUserInput("Enter new name for the actor:"));
 
                 theaterShowService.update(TShow, NewId, NewTitle, NewVenue, NewDate, NewName);
-                subMenuClients();
+                subMenuTheater();
                 break;
             case "3":
                 String Id = getUserInput("Enter theater show code:");
                 theaterShowService.remove(theaterShowService.SearchTheaterShow(Id));
-                subMenuClients();
+                subMenuTheater();
                 break;
             case "4":
                 theaterShowService.AllTheaterShows();
-                subMenuClients();
+                subMenuTheater();
             case "5":
                 initBaseMenu();
             default:
@@ -191,7 +207,7 @@ public class Menu {
             case "1":
                 String id = CheckCode(getUserInput("Enter client id:"));
                 client = clientService.GetClientByCode(id);
-                if(client != null){
+                if (client != null) {
                     System.out.println("This client already exists.");
                     subMenuClients();
                 }
@@ -206,7 +222,7 @@ public class Menu {
             case "2":
                 String Code = CheckCode(getUserInput("Enter client id:"));
                 client = clientService.GetClientByCode(Code);
-                if(client == null){
+                if (client == null) {
                     System.out.println("This client does not exist.");
                     subMenuClients();
                 }
@@ -222,7 +238,7 @@ public class Menu {
             case "3":
                 String Id = getUserInput("Enter client id:");
                 client = clientService.GetClientByCode(Id);
-                if(client != null) clientService.remove(client);
+                if (client != null) clientService.remove(client);
                 subMenuClients();
                 break;
             case "4":
@@ -248,7 +264,7 @@ public class Menu {
 
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-        while (phone.length() != 10 || ! pattern.matcher(phone).matches()) {
+        while (phone.length() != 10 || !pattern.matcher(phone).matches()) {
             System.out.println(phone + " is not a valid phone. You must provide a number with ten digits");
             phone = scanner.nextLine();
         }
@@ -259,7 +275,7 @@ public class Menu {
     private static String CheckCode(String code) {
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-        while (code.length() != 5 || ! pattern.matcher(code).matches()) {
+        while (code.length() != 5 || !pattern.matcher(code).matches()) {
             System.out.println(code + " is not a valid code. You must provide a number with five digits");
             code = scanner.nextLine();
         }
@@ -271,7 +287,7 @@ public class Menu {
     private static String EmailValidation(String email) {
         Pattern pattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$");
 
-        while (! pattern.matcher(email).matches()) {
+        while (!pattern.matcher(email).matches()) {
             System.out.println(email + " is not a valid email. Please provide a valid mail");
             email = scanner.nextLine();
         }
