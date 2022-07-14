@@ -16,13 +16,11 @@ public class ClientService extends EntityService {
     }
 
     public void insert(String id, String firstName, String surName, String email, String phone) {
-        //validation
-
-
         //if passes
         clients.add(new Client(id, firstName, surName, email, phone));
     }
-    public Client SearchClientN(String code) {
+
+    public Client GetClientByCode(String code) {
         for (Client Client : clients) {
             if (Client.getID().toUpperCase().trim().equals(code.toUpperCase().trim())) {
                 System.out.println("Client found");
@@ -39,14 +37,12 @@ public class ClientService extends EntityService {
     }
 
 
-    public void update(Client client,String id, String firstName, String surName, String email, String phone)
+    public void update(Client client, String firstName, String surName, String email, String phone)
     {
-        client.setID(id);
         client.setFirstName(firstName);
         client.setSurName(surName);
         client.setEmail(email);
         client.setPhone(phone);
-
     }
 
 
