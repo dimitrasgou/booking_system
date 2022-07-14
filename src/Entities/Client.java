@@ -97,4 +97,8 @@ public class Client {
                 ", Phone='" + Phone + '\'' +
                 '}';
     }
+
+    public String AsCsvLine(){
+        return  ID + ";" + FirstName + ";" + SurName + ";" + Email + ";" + Phone;
+    }
 }

@@ -54,13 +54,13 @@ public class ClientService extends EntityService {
     public void showAllClients() {
         System.out.println("====Clients List====");
         int i=1;
-        for (Client Client : clients) {
-            System.out.println("  ==================== no" + i);
-            System.out.println("ID number...........: " + Client.getID());
-            System.out.println("Name................: " + Client.getFirstName());
-            System.out.println("Surname.............: " + Client.getSurName());
-            System.out.println("Email...............: " + Client.getEmail());
-            System.out.println("Phone Number........: " + Client.getPhone());
+        for (Client client : clients) {
+            System.out.println("==================== no" + i);
+            System.out.println("ID number...........: " + client.getID());
+            System.out.println("Name................: " + client.getFirstName());
+            System.out.println("Surname.............: " + client.getSurName());
+            System.out.println("Email...............: " + client.getEmail());
+            System.out.println("Phone Number........: " + client.getPhone());
 
         }
     }

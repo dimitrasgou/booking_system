@@ -13,7 +13,6 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
     private static ClientService clientService = new ClientService();
     private static MusicShowService musicShowService = new MusicShowService();
-
     private static TheaterShowService theaterShowService = new TheaterShowService();
 
 
@@ -199,7 +198,7 @@ public class Menu {
 
                 String firstName = getUserInput("Enter client firstname:");
                 String surName = getUserInput("Enter client surName:");
-                String email = getUserInput("Enter client email:");
+                String email = EmailValidation(getUserInput("Enter client email:"));
                 String phone = CheckPhone(getUserInput("Enter client phone:"));
                 clientService.insert(id, firstName, surName, email, phone);
                 subMenuClients();

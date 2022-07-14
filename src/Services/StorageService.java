@@ -4,22 +4,76 @@ import Entities.Client;
 import Entities.MusicShow;
 import Entities.TheaterShow;
 
-
+import java.io.*;
 import java.util.ArrayList;
 
 
 
 public class StorageService {
-
+    final String Directory = "/tmp/";
 
 
     public ArrayList<Client> getClients(){
-        return new ArrayList<Client>();
+
+        String FullFilename = Directory + "Clients.csv";
+        ArrayList<Client> allClients = new ArrayList<Client>();
+        String Line = null;
+        String[] detailsArray;
+        String ID;
+        String firstName;
+        String lastName;
+        String email;
+        String phone;
+        Client newClient;
+        try (BufferedReader Br = new BufferedReader (new InputStreamReader(new FileInputStream(FullFilename))))
+        {
+            System.out.println("READING");
+            while ((Line = Br.readLine ()) != null)
+            {
+                detailsArray = Line.split (";");
+                ID = detailsArray[0];
+                firstName = detailsArray[1];
+                lastName = detailsArray[2];
+                email = detailsArray[3];
+                phone = detailsArray[4];
+                newClient = new Client (ID, firstName, lastName, email, phone);
+                allClients.add (newClient);
+            }
+
+            return allClients;
+        }
+        catch (FileNotFoundException ex)
+        {
+            System.out.println ("Cannot Open File...");
+            return new ArrayList<Client>();
+        }
+        catch (IOException ex)
+        {
+            System.out.println ("Severe IO Error...");
+            return new ArrayList<Client>();
+        }
+        catch (NumberFormatException ex)
+        {
+            System.out.println ("Data Error...: " + Line);
+            return new ArrayList<Client>();
+        }
     }
 
 
     public void saveClients(ArrayList<Client> clients){
-        System.out.println(clients);
+        String FullFilename = Directory + "Clients.csv";
+        try (PrintWriter Printwriter = new PrintWriter(FullFilename))
+        {
+            for (Client tmp: clients)
+            {
+                Printwriter.println (tmp.AsCsvLine ());
+            }
+        }
+        catch (FileNotFoundException ex)
+        {
+            System.out.println ("Cannot open output file");
+            System.exit (0);
+        }
     }
 
 
@@ -39,4 +93,6 @@ public class StorageService {
     public void saveTheaterShows(ArrayList<TheaterShow> theaterShows){
         System.out.println(theaterShows);
     }
+
+
 }
