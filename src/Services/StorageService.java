@@ -10,12 +10,12 @@ import java.util.ArrayList;
 
 
 public class StorageService {
-    final String Directory = "/tmp/";
+    final String Directory = System.getProperty("user.dir")+"\\records\\";
 
 
     public ArrayList<Client> getClients(){
 
-        String FullFilename = Directory + "Clients.csv";
+        String FullFilename = Directory + "Clients.txt";
         ArrayList<Client> allClients = new ArrayList<Client>();
         String Line = null;
         String[] detailsArray;
@@ -25,9 +25,10 @@ public class StorageService {
         String email;
         String phone;
         Client newClient;
+        System.out.println();
+
         try (BufferedReader Br = new BufferedReader (new InputStreamReader(new FileInputStream(FullFilename))))
         {
-            System.out.println("READING");
             while ((Line = Br.readLine ()) != null)
             {
                 detailsArray = Line.split (";");
@@ -61,7 +62,7 @@ public class StorageService {
 
 
     public void saveClients(ArrayList<Client> clients){
-        String FullFilename = Directory + "Clients.csv";
+        String FullFilename = Directory + "Clients.txt";
         try (PrintWriter Printwriter = new PrintWriter(FullFilename))
         {
             for (Client tmp: clients)
@@ -72,8 +73,10 @@ public class StorageService {
         catch (FileNotFoundException ex)
         {
             System.out.println ("Cannot open output file");
-            System.exit (0);
+            return;
         }
+
+        System.out.println("Saved clients successfully");
     }
 
 

@@ -1,28 +1,26 @@
 package Entities;
 
-import Entities.Show;
-
 public class MusicShow extends Show {
 
-    String SingerName;
+    String singerName;
 
     public MusicShow(String id, String title, String theater, String date, String singerName) {
         super(id, title, theater, date);
-        SingerName = singerName;
+        singerName = singerName;
     }
 
     public String getSingerName() {
-        return SingerName;
+        return singerName;
     }
 
     public void setSingerName(String singerName) {
-        SingerName = singerName;
+        singerName = singerName;
     }
 
     @Override
     public String toString() {
         return "Entities.MusicShow{" +
-                "SingerName='" + SingerName + '\'' +
+                "SingerName='" + singerName + '\'' +
                 ", ID='" + ID + '\'' +
                 ", title='" + title + '\'' +
                 ", theater='" + theater + '\'' +
@@ -30,4 +28,9 @@ public class MusicShow extends Show {
                 ", ClientList=" + ClientList +
                 '}';
     }
+
+    public String AsCsvLine(){
+        return  ID + ";" + title + ";" + theater + ";" + date + ";" + singerName;
+    }
+
 }

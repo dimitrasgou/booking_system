@@ -29,4 +29,8 @@ public class TheaterShow extends Show {
                 ", ClientList=" + ClientList +
                 '}';
     }
+
+    public String AsCsvLine(){
+        return  ID + ";" + title + ";" + theater + ";" + date + ";" + actorName;
+    }
 }
