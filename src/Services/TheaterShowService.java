@@ -35,16 +35,15 @@ public class TheaterShowService extends EntityService {
                 System.out.println("Theater show found");
                 return show;
             }
-            else
+            else if(show== null)
                 System.out.println("Theater show not found");
         }
         return null;
     }
 
 
-    public void update(TheaterShow show,String id, String title, String venue, String date, String actor)
+    public void update(TheaterShow show, String title, String venue, String date, String actor)
     {
-        show.setCode(id);
         show.setTitle(title);
         show.setTheater(venue);
         show.setDate(date);
@@ -53,11 +52,27 @@ public class TheaterShowService extends EntityService {
     }
 
     public void remove(TheaterShow show){
+
         theaterShows.remove(show);
     }
 
     public void bookTicketForShow(TheaterShow theaterShow, Client client){
         theaterShow.bookTicket(client);
+    }
+    public void showtickets() {
+        ;
+        System.out.println("====Theater Show list====");
+        int x = 1;
+        for (Entities.TheaterShow show : theaterShows) {
+            System.out.println("==================== no" + x);
+            System.out.println("ID number..........: " + show.getCode());
+            int i;
+            for (i = 0; i < show.getClientList().size(); i++) {
+                System.out.println("Clients booked.....: " + show.getClientList());
+            }
+            System.out.println(i);
+            x++;
+        }
     }
 
     public void AllTheaterShows() {
@@ -74,4 +89,5 @@ public class TheaterShowService extends EntityService {
             i++;
         }
     }
+
 }

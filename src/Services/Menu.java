@@ -23,8 +23,8 @@ public class Menu {
         System.out.println("Insert-Edit-Delete Information of Theater Entities Show..................1");
         System.out.println("Insert-Edit-Delete Information of Music Entities Show....................2");
         System.out.println("Insert-Edit-Delete Information of Entities Client........................3");
-        System.out.println("Book a ticket for a Theater Entities Show................................4");
-        System.out.println("Book a ticket for a Music.. Entities Show................................5");
+        System.out.println("Book a ticket for a Theater Show.........................................4");
+        System.out.println("Book a ticket for a Music Show...........................................5");
         System.out.println("View Statistics..........................................................6");
         System.out.println("Exit the Menu............................................................7");
         System.out.println("\n\nEnter your choice:");
@@ -58,14 +58,32 @@ public class Menu {
                     initBaseMenu();
                     return;
                 }
-
                 theaterShowService.bookTicketForShow(TShow, client);
+                initBaseMenu();
                 break;
             case "5":
-                System.out.println("Booking Music");
+                String musicShowCode = CheckCode(getUserInput("Enter theater show id:"));
+                MusicShow MShow = musicShowService.SearchMusicShow(musicShowCode);
+                if (MShow == null) {
+                    System.out.println("Theater show was not found.");
+                    initBaseMenu();
+                    return;
+                }
+
+                String clientCode1 = CheckCode(getUserInput("Enter client id:"));
+                Client client1 = clientService.GetClientByCode(clientCode1);
+                if (client1 == null) {
+                    System.out.println("Client was not found.");
+                    initBaseMenu();
+                    return;
+                }
+                musicShowService.bookTicketForShow(MShow, client1);
+                initBaseMenu();
                 break;
             case "6":
-                System.out.println("View statistics");
+                musicShowService.showtickets();
+                theaterShowService.showtickets();
+                initBaseMenu();
                 break;
             case "7":
                 saveAndExit();
@@ -78,7 +96,7 @@ public class Menu {
 
     private static void saveAndExit() {
         System.out.println("Save and Exiting...");
-        clientService.save();
+        theaterShowService.save();
         musicShowService.save();
         clientService.save();
         System.exit(0);
@@ -102,22 +120,21 @@ public class Menu {
                 String ThID = CheckCode(getUserInput("Enter theater show id:"));
                 String ThTitle = getUserInput("Enter the title:");
                 String ThVenue = getUserInput("Enter the venue:");
-                String ThDate = getUserInput("Enter the date:");
+                String ThDate = dateFormatpattern(getUserInput("Enter the date:"));
                 String actor = getUserInput("Enter the actor:");
                 theaterShowService.insert(ThID, ThTitle, ThVenue, ThDate, actor);
 
                 subMenuTheater();
                 break;
             case "2":
-                String Code = CheckCode(getUserInput("Enter client id:"));
+                String Code = CheckCode(getUserInput("Enter Theater show id:"));
                 TheaterShow TShow = theaterShowService.SearchTheaterShow(Code);
-                String NewId = CheckCode(getUserInput("Enter new  id:"));
                 String NewTitle = getUserInput("Enter new title:");
                 String NewVenue = getUserInput("Enter new venue:");
-                String NewDate = getUserInput("Enter new date:");
-                String NewName = CheckPhone(getUserInput("Enter new name for the actor:"));
+                String NewDate = dateFormatpattern(getUserInput("Enter new date:"));
+                String NewName = getUserInput("Enter new name for the actor:");
 
-                theaterShowService.update(TShow, NewId, NewTitle, NewVenue, NewDate, NewName);
+                theaterShowService.update(TShow, NewTitle, NewVenue, NewDate, NewName);
                 subMenuTheater();
                 break;
             case "3":
@@ -155,31 +172,32 @@ public class Menu {
                 String MID = CheckCode(getUserInput("Enter music show id:"));
                 String MTitle = getUserInput("Enter the title:");
                 String MVenue = getUserInput("Enter the venue:");
-                String MDate = getUserInput("Enter the date:");
+                String MDate = dateFormatpattern(getUserInput("Enter the date:"));
                 String singer = getUserInput("Enter the singer:");
                 musicShowService.insert(MID, MTitle, MVenue, MDate, singer);
 
-                subMenuClients();
+                subMenuMusic();
                 break;
             case "2":
                 String Code = CheckCode(getUserInput("Enter Music Show id:"));
                 MusicShow MShow = musicShowService.SearchMusicShow(Code);
-                String NewMId = CheckCode(getUserInput("Enter new  id:"));
                 String NewMTitle = getUserInput("Enter new title:");
                 String NewMVenue = getUserInput("Enter new venue:");
-                String NewMDate = getUserInput("Enter new date:");
-                String NewMName = CheckPhone(getUserInput("Enter new name for the singer:"));
+                String NewMDate = dateFormatpattern(getUserInput("Enter new date:"));
+                String NewMName = getUserInput("Enter new name for the singer:");
 
-                musicShowService.update(MShow, NewMId, NewMTitle, NewMVenue, NewMDate, NewMName);
-                subMenuClients();
+                musicShowService.update(MShow, NewMTitle, NewMVenue, NewMDate, NewMName);
+                subMenuMusic();
                 break;
             case "3":
                 String Id = getUserInput("Enter Music Show id:");
                 musicShowService.remove(musicShowService.SearchMusicShow(Id));
+                subMenuMusic();
                 break;
 
             case "4":
                 musicShowService.AllMusicShows();
+                subMenuMusic();
                 break;
             case "5":
                 initBaseMenu();
@@ -294,7 +312,21 @@ public class Menu {
 
         return email;
     }
+
+private static String dateFormatpattern(String date) {
+
+    Pattern pattern = Pattern.compile("(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\\d\\d)");
+    while (!pattern.matcher(date).matches()) {
+        System.out.println(date + " is not a valid email. Please provide a valid mail");
+        date = scanner.nextLine();
+    }
+
+    return date;
 }
+
+}
+
+
 
 
 

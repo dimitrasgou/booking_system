@@ -26,7 +26,7 @@ public class ClientService extends EntityService {
                 System.out.println("Client found");
                 return Client;
             }
-            else
+            else if (Client ==null)
                 System.out.println("Client not found");
         }
         return null;

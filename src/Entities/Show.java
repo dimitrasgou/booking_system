@@ -1,9 +1,6 @@
 package Entities;
 
-import Entities.Client;
-
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 
 public abstract class Show {
@@ -13,7 +10,7 @@ public abstract class Show {
     protected String theater;
     protected String date;
 
-    protected ArrayList<Client> ClientList ;
+    protected ArrayList<String> ClientList ;
 
     public Show(String ID, String title, String theater, String date) {
         this.ID = ID;
@@ -56,12 +53,12 @@ public abstract class Show {
         this.date = date;
     }
 
-    public ArrayList<Client> getClientList() {
+    public ArrayList<String> getClientList() {
         return ClientList;
     }
 
     public void bookTicket(Client client){
-        ClientList.add(client);
+        ClientList.add(client.toString());
     }
 
 
@@ -76,10 +73,8 @@ public abstract class Show {
                 '}';
     }
 
-    private static void dateFormatpattern() {
 
-        Pattern.compile("(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)");
-    }
+
 
 
     public void ShowAll() {

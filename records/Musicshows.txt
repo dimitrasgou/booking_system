@@ -1,0 +1,6 @@
+12345;swan;palas;12.07.2022;georgiadou sofia;[];
+12586;synaylia 3;katrakeio;18.7.2022;germanidou kalliopi;[];
+12478;tragoudotas rempetika;katrakeio;09.09.19;ioulia karapataki;[];
+12389;tragoudontas xristougenniatika;christmas theater;22.12.2022;xristos santikai;[];
+85201;tragoudonta melina;theatro vraxwn;12.05.2022;melina kana;[];
+85287;aloud;oaka;12.12.22;scorpions;[];

@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.Client;
 import Entities.MusicShow;
 
 import java.util.ArrayList;
@@ -23,10 +24,7 @@ public class MusicShowService extends EntityService
     }
 
     public void insert(String id, String title, String venue, String date, String singer) {
-        //validation
 
-
-        //if passes
         musicShows.add(new MusicShow(id, title, venue, date, singer));
     }
 
@@ -35,8 +33,8 @@ public class MusicShowService extends EntityService
             if (show.getCode().equals(code) ) {
                 musicShows.remove(show);
             }
-            else if (musicShows.isEmpty()
-            )System.out.println("Music Show not found");
+            else if (show==null)
+            System.out.println("Music Show not found");
         }
 
     }
@@ -46,16 +44,15 @@ public class MusicShowService extends EntityService
                 System.out.println("Music show found");
                 return show;
             }
-            else
+            else if (show==null)
                 System.out.println("Music show not found");
         }
         return null;
     }
 
 
-    public void update(MusicShow show,String id, String title, String venue, String date, String singer)
+    public void update(MusicShow show, String title, String venue, String date, String singer)
     {
-        show.setCode(id);
         show.setTitle(title);
         show.setTheater(venue);
         show.setDate(date);
@@ -65,10 +62,30 @@ public class MusicShowService extends EntityService
 
     public void remove(MusicShow show){
         musicShows.remove(show);
+
     }
 
+    public void bookTicketForShow(MusicShow musicShow, Client client){
+        musicShow.bookTicket(client);
+    }
+
+    public void showtickets() {
+        ;
+        System.out.println("====Music Show list====");
+        int x = 1;
+        for (Entities.MusicShow show : musicShows) {
+            System.out.println("==================== no" + x);
+            System.out.println("ID number..........: " + show.getCode());
+            int i;
+            for (i = 0; i < show.getClientList().size(); i++) {
+                System.out.println("Clients booked.....: " + show.getClientList());
+            }
+            System.out.println(i);
+            x++;
+        }
+    }
     public void AllMusicShows() {
-        System.out.println("====Music Show ist====");
+        System.out.println("====Music Show List====");
         int i=1;
         for (Entities.MusicShow show : musicShows) {
             System.out.println("  ==================== no" + i);
@@ -77,6 +94,7 @@ public class MusicShowService extends EntityService
             System.out.println("Venue..............: " + show.getTheater());
             System.out.println("Date...............: " + show.getDate());
             System.out.println("Singer.............: " + show.getSingerName());
+            System.out.println("Clients booked.....: " + show.getClientList());
 
             i++;
         }

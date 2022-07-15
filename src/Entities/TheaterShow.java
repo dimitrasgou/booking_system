@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.ArrayList;
+
 public class TheaterShow extends Show {
 
     String actorName;
@@ -21,7 +23,7 @@ public class TheaterShow extends Show {
 
     public String toString() {
         return "Entities.TheaterShow{" +
-                "ID=" + ID +
+                "ID='" + ID +
                 ", title='" + title + '\'' +
                 ", theater='" + theater + '\'' +
                 ", date='" + date + '\'' +
@@ -31,6 +33,7 @@ public class TheaterShow extends Show {
     }
 
     public String AsCsvLine(){
-        return  ID + ";" + title + ";" + theater + ";" + date + ";" + actorName;
+        ArrayList<String> clientList = ClientList;
+        return  ID + ";" + title + ";" + theater + ";" + date + ";" + actorName +";" + ClientList+";";
     }
 }
