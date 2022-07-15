@@ -5,6 +5,9 @@ import Entities.TheaterShow;
 
 import java.util.ArrayList;
 
+/**
+ * the services in order to manage the Theater Entity
+ */
 public class TheaterShowService extends EntityService {
     private ArrayList<TheaterShow> theaterShows;
 
@@ -22,10 +25,7 @@ public class TheaterShowService extends EntityService {
     }
 
     public void insert(String id, String title, String venue, String date, String actor) {
-        //validation
 
-
-        //if passes
         theaterShows.add(new TheaterShow(id, title, venue, date, actor));
     }
 

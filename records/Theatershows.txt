@@ -1,2 +1,2 @@
-00012;the hand;sinos theater;12.05.2022;myrsini papadopoulou;[Client{ID='00005', SurName='VICTORIA', FirstName='GEORGIADOU', Email='vic@gmail.com', Phone='6970213456'}, Client{ID='00004', SurName='FOTEINI', FirstName='STERGIOU', Email='otini@gmail.com', Phone='6978787585'}];
+00012;the hand;sinos theater;12.05.2022;myrsini papadopoulou;[Client{ID='00001', SurName='KONSTANTINA', FirstName='IOANNIDOU', Email='nina@gmail.com', Phone='6987894567'}];
 09809;we fly;metropolis;12.09.2022;andriannidou christina;[];

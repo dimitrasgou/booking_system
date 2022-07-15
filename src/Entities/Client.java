@@ -2,9 +2,7 @@ package Entities;
 
 public class Client {
 
-    /**
-     * �������� �� ������ ����� ��� ��������� ��� ���� ���� ����� ������������� �� �������������� ��� ������������ ����� ��� �� ������� ���
-     */
+
     private String ID;
     private String SurName;
     private String FirstName;
@@ -12,15 +10,6 @@ public class Client {
     private String Phone;
 
 
-    /**
-     * � ������� ������������� ��� �� ���������� ���� ������������ ��� ������ Entities.Client
-     *
-     * @param surName   ������� �� ��������� ������� ����� String
-     * @param firstName ������� �� ��������� ����� ����� String
-     * @param email     ������� �� ��������� email ����� String
-     * @param phone     ������� �� ��������� �������� ����� String
-     * @param ID        ������� �� ��������� ��. ������� ����� String
-     */
     public Client(String ID, String firstName, String surName, String email, String phone) {
         SurName = surName;
         FirstName = firstName;
@@ -28,7 +17,6 @@ public class Client {
         Phone = phone;
         this.ID = ID;
     }
-
 
 
     public String getSurName() {
@@ -74,9 +62,6 @@ public class Client {
     }
 
 
-    /**
-     * ��������� ��� �� �������� ��� ������������
-     */
     public void ShowAll() {
         System.out.println("    Students' Details");
         System.out.println("========================");

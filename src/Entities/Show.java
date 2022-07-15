@@ -2,7 +2,9 @@ package Entities;
 
 import java.util.ArrayList;
 
-
+/**
+ * an abstract class , without instance in order to pass properties and functions to subclasses
+ */
 public abstract class Show {
 
     protected String ID;
@@ -72,9 +74,6 @@ public abstract class Show {
                 ", ClientList=" + ClientList +
                 '}';
     }
-
-
-
 
 
     public void ShowAll() {

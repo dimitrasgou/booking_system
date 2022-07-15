@@ -127,8 +127,13 @@ public class Menu {
                 subMenuTheater();
                 break;
             case "2":
-                String Code = CheckCode(getUserInput("Enter Theater show id:"));
+                String Code = CheckCode(getUserInput("Enter theater show id:"));
                 TheaterShow TShow = theaterShowService.SearchTheaterShow(Code);
+                if (TShow == null) {
+                    System.out.println("Theater show was not found.");
+                    initBaseMenu();
+                    return;
+                }
                 String NewTitle = getUserInput("Enter new title:");
                 String NewVenue = getUserInput("Enter new venue:");
                 String NewDate = dateFormatpattern(getUserInput("Enter new date:"));
@@ -138,8 +143,14 @@ public class Menu {
                 subMenuTheater();
                 break;
             case "3":
-                String Id = getUserInput("Enter theater show code:");
-                theaterShowService.remove(theaterShowService.SearchTheaterShow(Id));
+                String theaterShowCode = CheckCode(getUserInput("Enter theater show id:"));
+                TheaterShow TShow1 = theaterShowService.SearchTheaterShow(theaterShowCode);
+                if (TShow1 == null) {
+                    System.out.println("Theater show was not found.");
+                    initBaseMenu();
+                    return;
+                }
+                theaterShowService.remove(theaterShowService.SearchTheaterShow(theaterShowCode));
                 subMenuTheater();
                 break;
             case "4":
@@ -180,6 +191,12 @@ public class Menu {
                 break;
             case "2":
                 String Code = CheckCode(getUserInput("Enter Music Show id:"));
+                MusicShow TShow = musicShowService.SearchMusicShow(Code);
+                if (TShow == null) {
+                    System.out.println("Music show was not found.");
+                    initBaseMenu();
+                    return;
+                }
                 MusicShow MShow = musicShowService.SearchMusicShow(Code);
                 String NewMTitle = getUserInput("Enter new title:");
                 String NewMVenue = getUserInput("Enter new venue:");
@@ -191,6 +208,12 @@ public class Menu {
                 break;
             case "3":
                 String Id = getUserInput("Enter Music Show id:");
+                MusicShow MShow1 = musicShowService.SearchMusicShow(Id);
+                if (MShow1 == null) {
+                    System.out.println("Theater show was not found.");
+                    initBaseMenu();
+                    return;
+                }
                 musicShowService.remove(musicShowService.SearchMusicShow(Id));
                 subMenuMusic();
                 break;
@@ -254,8 +277,13 @@ public class Menu {
                 subMenuClients();
                 break;
             case "3":
-                String Id = getUserInput("Enter client id:");
-                client = clientService.GetClientByCode(Id);
+                String Code1 = CheckCode(getUserInput("Enter client id:"));
+                client = clientService.GetClientByCode(Code1);
+                if (client == null) {
+                    System.out.println("This client does not exist.");
+                    subMenuClients();
+                }
+                client = clientService.GetClientByCode(Code1);
                 if (client != null) clientService.remove(client);
                 subMenuClients();
                 break;
@@ -269,6 +297,11 @@ public class Menu {
         }
     }
 
+    /**
+     * A method to get users input
+     * @param message what we ask from the user
+     * @return user's answer
+     */
     private static String getUserInput(String message) {
         System.out.println(message);
         return getNextLine();
@@ -278,6 +311,11 @@ public class Menu {
         return scanner.nextLine();
     }
 
+    /**
+     * checks whether the phone is valid according to the given regex
+     * @param phone String
+     * @return valid phone number
+     */
     private static String CheckPhone(String phone) {
 
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
@@ -290,6 +328,11 @@ public class Menu {
         return phone;
     }
 
+    /**
+     * checks whether the id/code is valid according to the given regex
+     * @param code
+     * @return valid code
+     */
     private static String CheckCode(String code) {
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
@@ -301,7 +344,11 @@ public class Menu {
         return code;
     }
 
-
+    /**
+     * checks whether an email is valid according to the given regex
+     * @param email
+     * @return valid email
+     */
     private static String EmailValidation(String email) {
         Pattern pattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$");
 
@@ -313,7 +360,12 @@ public class Menu {
         return email;
     }
 
-private static String dateFormatpattern(String date) {
+    /**
+     * checks whether an email is valid according to the given regex
+     * @param date
+     * @return valid date
+     */
+    private static String dateFormatpattern(String date) {
 
     Pattern pattern = Pattern.compile("(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((19|20)\\d\\d)");
     while (!pattern.matcher(date).matches()) {

@@ -2,6 +2,9 @@ package Entities;
 
 import java.util.ArrayList;
 
+/**
+ * inherits basic properties and functions from superclass Show
+ */
 public class MusicShow extends Show {
 
     String singerName;

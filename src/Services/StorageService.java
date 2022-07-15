@@ -7,7 +7,10 @@ import Entities.TheaterShow;
 import java.io.*;
 import java.util.ArrayList;
 
-
+/**
+ * this class is responsible for the storage service of data.
+ * sets the files' directory, in order to load data when starting the program and save data when exiting the program
+ */
 
 public class StorageService {
     final String Directory = System.getProperty("user.dir")+"\\records\\";

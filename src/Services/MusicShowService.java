@@ -5,6 +5,9 @@ import Entities.MusicShow;
 
 import java.util.ArrayList;
 
+/**
+ * the services in order to manage the Music Show Entity
+ */
 public class MusicShowService extends EntityService
 {
     private ArrayList<MusicShow> musicShows;
@@ -28,16 +31,7 @@ public class MusicShowService extends EntityService
         musicShows.add(new MusicShow(id, title, venue, date, singer));
     }
 
-    public void delete(String code) {
-        for (MusicShow show :musicShows) {
-            if (show.getCode().equals(code) ) {
-                musicShows.remove(show);
-            }
-            else if (show==null)
-            System.out.println("Music Show not found");
-        }
 
-    }
     public MusicShow SearchMusicShow(String code) {
         for (MusicShow show : musicShows ){
             if (show.getCode().equals(code)){

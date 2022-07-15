@@ -2,6 +2,9 @@ package Entities;
 
 import java.util.ArrayList;
 
+/**
+ * inherits basic properties and functions from superclass Show
+ */
 public class TheaterShow extends Show {
 
     String actorName;
@@ -9,6 +12,7 @@ public class TheaterShow extends Show {
     public TheaterShow(String id, String title, String theater, String date, String actorName) {
         super(id, title, theater, date);
         this.actorName = actorName;
+
     }
 
     public String getActorName() {
